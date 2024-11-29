@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>XiaoYu</title>
+  
+  <subtitle>XiaoYu</subtitle>
+  <link href="https://xiaoyu994.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://xiaoyu994.github.io/"/>
+  <updated>2024-11-29T12:28:07.165Z</updated>
+  <id>https://xiaoyu994.github.io/</id>
+  
+  <author>
+    <name>YU</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://xiaoyu994.github.io/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://xiaoyu994.github.io/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</id>
+    <published>2024-11-29T02:06:48.155Z</published>
+    <updated>2024-11-29T12:28:07.165Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>title: 我的第一篇博客<br>date: 2024-11-29 10:06:48</p><p>tags:—</p><h3 id="你好"><a class="header-anchor" href="#你好"></a>你好</h3>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;p&gt;title: 我的第一篇博客&lt;br&gt;
+date: 2024-11-29 10:06:48&lt;/p&gt;
+&lt;p&gt;tags:—&lt;/p&gt;
+&lt;h3 id=&quot;你好&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#你好&quot;&gt;&lt;/a&gt;你好&lt;/h3&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://xiaoyu994.github.io/hello-world/"/>
+    <id>https://xiaoyu994.github.io/hello-world/</id>
+    <published>2024-11-29T02:03:12.904Z</published>
+    <updated>2024-11-29T11:18:48.744Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a class="header-anchor" href="#Quick-Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a class="header-anchor" href="#Create-a-new-post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span>  $ hexo new <span class="string">&quot;My New Post&quot;</span>   $ hexo new <span class="string">&quot;My New Post&quot;</span> $ hexo new <span class="string">&quot;My New Post&quot;</span>  $  hexo new <span class="string">&quot;My New Post&quot;</span> $ hexo new <span class="string">&quot;My New Post&quot;</span> </span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span>  $ hexo new <span class="string">&quot;My New Post&quot;</span>    </span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span>  $ hexo new <span class="string">&quot;My New Post&quot;</span>  </span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span>  $ hexo new <span class="string">&quot;My New Post&quot;</span>   </span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span>  $ hexo new <span class="string">&quot;My New Post&quot;</span> </span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a class="header-anchor" href="#Run-server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a class="header-anchor" href="#Generate-static-files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a class="header-anchor" href="#Deploy-to-remote-sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
