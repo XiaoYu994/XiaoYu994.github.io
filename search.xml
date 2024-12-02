@@ -163,6 +163,13 @@
 <li>
 <p>执行命令,一定要安装好git插件✅,如果开了加速器，一定要关闭在部署，不然会报错</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo c &amp;&amp; hexo g &amp;&amp; hexo d  <span class="comment"># hexo d 表示执行部署</span></span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+<h2 id="部署到Netlify上"><a class="header-anchor" href="#部署到Netlify上"></a>部署到<code>Netlify</code>上</h2>
+<ol>
+<li>直接导入在GitHub创建的仓库</li>
+<li>设置自定义域名</li>
+<li>如果自己购买了域名可以更换上去</li>
+<li>支持自动构建，push了代码就会自动部署</li>
+</ol>
 </li>
 </ol>
 ]]></content>
