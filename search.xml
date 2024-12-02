@@ -115,7 +115,7 @@
 <ol start="9">
 <li><code>https://xxx.netlify.app/.netlify/functions/twikoo</code>就是你的环境id,在主题的<code>_config.yml</code>配置文件中配置环境参数</li>
 </ol>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">twikoo:</span><br><span class="line">  envId: https://xxx.netlify.app/.netlify/functions/twikoo</span><br><span class="line">   # 和你数据库申请的地区一致</span><br><span class="line">   region: us-east-1</span><br><span class="line">   visitor: false</span><br><span class="line">   option:</span><br></pre></td></tr></table></figure>
+ <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">twikoo:</span></span><br><span class="line">  <span class="attr">envId:</span> <span class="string">https://xxx.netlify.app/.netlify/functions/twikoo</span></span><br><span class="line">   <span class="comment"># 和你数据库申请的地区一致</span></span><br><span class="line">   <span class="attr">region:</span> <span class="string">us-east-1</span></span><br><span class="line">   <span class="attr">visitor:</span> <span class="literal">false</span></span><br><span class="line">   <span class="attr">option:</span></span><br></pre></td></tr></table></figure>
 </blockquote>
 <ol start="7">
 <li>
@@ -128,7 +128,27 @@
 </blockquote>
 </li>
 <li>
-<p>魔改主题：<a href="https://www.cnblogs.com/antmoe/p/12846393.html">Hexo博客之butterfly主题优雅魔改系列</a></p>
+<h2 id="其他"><a class="header-anchor" href="#其他"></a>其他</h2>
+<blockquote>
+<p>1.魔改主题：<a href="https://www.cnblogs.com/antmoe/p/12846393.html">Hexo博客之butterfly主题优雅魔改系列</a></p>
+<p>2.Front-matter</p>
+<ul>
+<li>
+<p>page Front-matter 用于配置你的博客文章</p>
+</li>
+<li>
+<p>post Front-matter用于配置页面，如搜索标签，分类</p>
+</li>
+<li>
+<p>首页文章简述，开启,设置为1，可定义概述</p>
+  <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">index_post_content:</span></span><br><span class="line">  <span class="attr">method:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># If you set method to 2 or 3, the length need to config</span></span><br><span class="line">  <span class="attr">length:</span> <span class="number">500</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>设置文章的权重值<code>weight</code>,在<code>Front-matter</code>中配置，值越小越靠前</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认文章排序方式</span></span><br><span class="line"><span class="attr">default_generator:</span></span><br><span class="line">  <span class="attr">ignore_folder:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">&#x27;weight&#x27;</span> <span class="comment"># 可以设置为 &#x27;title&#x27;, &#x27;date&#x27;, &#x27;updated&#x27; 等</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 首页文章排序方式</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">10</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">&#x27;weight&#x27;</span> <span class="comment"># 可以设置为 &#x27;title&#x27;, &#x27;date&#x27;, &#x27;updated&#x27; 等</span></span><br><span class="line">  <span class="attr">pagination_dir:</span> <span class="string">&#x27;page&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
 </li>
 </ol>
 </li>
@@ -175,6 +195,60 @@
 ]]></content>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>认识JavaWeb过滤器</title>
+    <url>/%E8%AE%A4%E8%AF%86JavaWeb%E8%BF%87%E6%BB%A4%E5%99%A8/</url>
+    <content><![CDATA[<h1 id="认识JavaWeb过滤器"><a class="header-anchor" href="#认识JavaWeb过滤器"></a>认识JavaWeb过滤器</h1>
+<p>记录在一次java过滤器作业中遇到的一些问题</p>
+<h2 id="过滤器原理"><a class="header-anchor" href="#过滤器原理"></a>过滤器原理</h2>
+<blockquote>
+<p>当我们使用过滤器时，过滤器会对游览器的请求进行过滤，过滤器可以动态的分为3个部分<strong>1.放行之前的代码，2.放行，3.放行后的代码</strong>，这3个部分分别会发挥不同作用。</p>
+<ol>
+<li>
+<p>对浏览器请求进行第一次过滤，然后继续执行</p>
+</li>
+<li>
+<p>将浏览器请求放行，如果还有过滤器，那么就继续交给下一个过滤器</p>
+</li>
+<li>
+<p>对返回的Web资源再次进行过滤处理</p>
+</li>
+</ol>
+<p><strong>不止请求会经过过滤器，响应也会经过过滤器</strong></p>
+</blockquote>
+<h3 id="执行过程"><a class="header-anchor" href="#执行过程"></a>执行过程</h3>
+<blockquote>
+<p><img src="/.io//%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B.png" alt="执行过程"></p>
+</blockquote>
+<h3 id="使用过滤器"><a class="header-anchor" href="#使用过滤器"></a>使用过滤器</h3>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&gt;<span class="keyword">package</span> com.servlet.filter;</span><br><span class="line">&gt;<span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line">&gt;<span class="keyword">import</span> java.io.IOException;</span><br><span class="line">&gt;<span class="meta">@WebServlet(&quot;/&quot;)</span></span><br><span class="line">&gt;<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test</span> <span class="keyword">implements</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">(FilterConfig filterConfig)</span> <span class="keyword">throws</span> ServletException &#123;</span><br><span class="line">      <span class="comment">// filterConfig读取配置参数  filterConfig.getInitParameterNames获取键值对</span></span><br><span class="line">       System.out.println(<span class="string">&quot;创建&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doFilter</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="keyword">throws</span> IOException, ServletException &#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;执行&quot;</span>);</span><br><span class="line">       <span class="comment">//下面这行代码就是放行</span></span><br><span class="line">       filterChain.doFilter(servletRequest,servletResponse)</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> &#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;销毁&quot;</span>);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line">&gt;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>注解中就是过滤器过滤的资源</p>
+<p><em><strong>多个过滤器之间可以形成过滤器链</strong></em></p>
+<p><img src="/.io//%E8%BF%87%E6%BB%A4%E5%99%A8%E9%93%BE.png" alt="过滤器链"></p>
+</blockquote>
+<h2 id="出现的问题"><a class="header-anchor" href="#出现的问题"></a>出现的问题</h2>
+<blockquote>
+<p>1.maven导入坐标时没加<code>provided</code></p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;javax.servlet&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;<span class="number">3.1</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line">  &lt;scope&gt;provided&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>为什么？</p>
+<blockquote>
+<p>当我们运行程序到Tomcat容器中时，容器本身已经提供了servlet-api的实现，如果不指定<code>&lt;scope&gt;provided&lt;/scope&gt;</code>，Maven会将<code>javax.servlet-api</code>包含在最终的WAR包中，会导致冲突问题，加这个相当于表示在编译和测试中是可用的，但在运行时不要包含在最终构建的产物中</p>
+</blockquote>
+<ol start="2">
+<li>在运行过程中浏览器出现<code>java.lang.IllegalStateException: Cannot call sendError() after the response has been committed</code>报错，因为之前调用过sendError()这个函数，我以为时方法调用出现的问题，在过滤器中将该代码注释后，再次运行发现还是报相同的错误，后面以为是tomcat有缓存的问题😡，因为之前也有过类似的问题，后面我又清理缓存又换tomcat的版本，后面发现他其实是<em><strong>多次response导致</strong></em>，Servlet容器会在响应结束时自动关闭输出流，这个时候再次发送response就会出现报错，进到我的代码中去看，我重写了HttpServletf分发资源的方式，按照方法名分发资源访问路径 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.servlet;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 修改分发的方式</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BaseServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">service</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">         <span class="type">String</span> <span class="variable">uri</span> <span class="operator">=</span> req.getRequestURI();</span><br><span class="line">         <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> uri.lastIndexOf(<span class="string">&quot;/&quot;</span>);</span><br><span class="line">         <span class="type">String</span> <span class="variable">methodName</span> <span class="operator">=</span> uri.substring(index + <span class="number">1</span>);</span><br><span class="line">         Class&lt;? <span class="keyword">extends</span> <span class="title class_">BaseServlet</span>&gt; cls = <span class="built_in">this</span>.getClass();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> cls.getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                method.invoke(<span class="built_in">this</span>, req, resp);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment">// super.service(req, resp);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>就是在注释的地方，调用这个方法的时候会在调用父类中的service方法，这就产生了多次响应的问题</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
 </search>
