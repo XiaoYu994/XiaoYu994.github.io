@@ -2,9 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xiaoyu994.github.io/MP%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2024-12-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xiaoyu994.github.io/%E5%9F%BA%E4%BA%8EHexo%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/</loc>
     
-    <lastmod>2024-12-02</lastmod>
+    <lastmod>2024-12-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiaoyu994.github.io/%E8%AE%A4%E8%AF%86JavaWeb%E8%BF%87%E6%BB%A4%E5%99%A8/</loc>
+    
+    <lastmod>2024-12-03</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -46,19 +64,10 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://xiaoyu994.github.io/%E8%AE%A4%E8%AF%86JavaWeb%E8%BF%87%E6%BB%A4%E5%99%A8/</loc>
-    
-    <lastmod>2024-12-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   <url>
     <loc>https://xiaoyu994.github.io/</loc>
-    <lastmod>2024-12-02</lastmod>
+    <lastmod>2024-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -66,14 +75,21 @@
   
   <url>
     <loc>https://xiaoyu994.github.io/tags/hexo/</loc>
-    <lastmod>2024-12-02</lastmod>
+    <lastmod>2024-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xiaoyu994.github.io/tags/Java/</loc>
-    <lastmod>2024-12-02</lastmod>
+    <lastmod>2024-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiaoyu994.github.io/tags/MyBatis-Plus/</loc>
+    <lastmod>2024-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -82,7 +98,7 @@
   
   <url>
     <loc>https://xiaoyu994.github.io/categories/%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2024-12-02</lastmod>
+    <lastmod>2024-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
