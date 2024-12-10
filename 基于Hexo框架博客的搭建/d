@@ -1,0 +1,140 @@
+---
+title: 认识JavaWeb过滤器
+tags:
+  - Java
+categories:
+  - 学习
+date: 2024-12-02 20:21:48
+description: 记录在使用JavaWeb过滤器时遇到的问题
+keywords: JavaWeb过滤器
+top_img: /认识JavaWeb过滤器/top_img.jpg
+cover: /认识JavaWeb过滤器/top_img.jpg
+weight: 3
+abbrlink: 26488
+updated:
+---
+# 认识JavaWeb过滤器
+
+记录在一次java过滤器作业中遇到的一些问题
+
+## 过滤器原理
+
+>当我们使用过滤器时，过滤器会对游览器的请求进行过滤，过滤器可以动态的分为3个部分**1.放行之前的代码，2.放行，3.放行后的代码**，这3个部分分别会发挥不同作用。
+>
+>1. 对浏览器请求进行第一次过滤，然后继续执行
+>
+>2. 将浏览器请求放行，如果还有过滤器，那么就继续交给下一个过滤器
+>
+>3. 对返回的Web资源再次进行过滤处理
+>
+>   **不止请求会经过过滤器，响应也会经过过滤器**
+>
+>
+
+### 执行过程
+
+>![过滤器链](/认识JavaWeb过滤器/1.png)
+
+### 使用过滤器
+
+>  ```java
+>  package com.servlet.filter;
+>  import javax.servlet.annotation.WebServlet;
+>  import java.io.IOException;
+>  @WebServlet("/")
+>  public class test implements Filter {
+>  @Override
+>  public void init(FilterConfig filterConfig) throws ServletException {
+>    // filterConfig读取配置参数  filterConfig.getInitParameterNames获取键值对
+>     System.out.println("创建");
+>  }
+>  
+>  @Override
+>  public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+>     System.out.println("执行");
+>     //下面这行代码就是放行
+>     filterChain.doFilter(servletRequest,servletResponse)
+>  }
+>  
+>  @Override
+>  public void destroy() {
+>     System.out.println("销毁");
+>  
+>  }
+>  }
+>  ```
+>
+>
+>
+>注解中就是过滤器过滤的资源
+>
+>***多个过滤器之间可以形成过滤器链***
+>
+>![ 过滤器链](./认识JavaWeb过滤器/2.png)
+
+## 出现的问题
+
+>1. maven导入坐标时没加`provided`
+>
+> ```java
+>     <dependency>
+>       <groupId>javax.servlet</groupId>
+>       <artifactId>javax.servlet-api</artifactId>
+>       <version>3.1.0</version>
+>       <scope>provided</scope>
+>     </dependency>
+> ```
+>
+>为什么？
+>
+>>当我们运行程序到Tomcat容器中时，容器本身已经提供了servlet-api的实现，如果不指定`<scope>provided</scope>`，Maven会将`javax.servlet-api`包含在最终的WAR包中，会导致冲突问题，加这个相当于表示在编译和测试中是可用的，但在运行时不要包含在最终构建的产物中
+>
+>2. 在运行过程中浏览器出现`java.lang.IllegalStateException: Cannot call sendError() after the response has been committed`报错，因为之前调用过sendError()这个函数，我以为是方法调用出现的问题，在过滤器中将该代码注释后，再次运行发现还是报相同的错误，后面以为是tomcat有缓存的问题😡，因为之前也有过类似的问题，后面我又清理缓存又换tomcat的版本，后面发现他其实是***多次response导致***，Servlet容器会在响应结束时自动关闭输出流，这个时候再次发送response就会出现报错，进到我的代码中去看，我重写了HttpServletf分发资源的方式，按照方法名分发资源访问路径
+>
+>      ```java
+>      package com.servlet;
+>      import javax.servlet.ServletException;
+>      import javax.servlet.http.HttpServlet;
+>      import javax.servlet.http.HttpServletRequest;
+>      import javax.servlet.http.HttpServletResponse;
+>      import java.io.IOException;
+>      import java.lang.reflect.InvocationTargetException;
+>      import java.lang.reflect.Method;
+>      
+>      /**
+>       * 修改分发的方式
+>       */
+>      public class BaseServlet extends HttpServlet {
+>      
+>          @Override
+>          protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+>               String uri = req.getRequestURI();
+>               int index = uri.lastIndexOf("/");
+>               String methodName = uri.substring(index + 1);
+>               Class<? extends BaseServlet> cls = this.getClass();
+>              try {
+>                  Method method = cls.getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
+>                  try {
+>                      method.invoke(this, req, resp);
+>                  } catch (IllegalAccessException e) {
+>                      throw new RuntimeException(e);
+>                  } catch (InvocationTargetException e) {
+>                      throw new RuntimeException(e);
+>                  }
+>              } catch (NoSuchMethodException e) {
+>                  throw new RuntimeException(e);
+>              }
+>      
+>             // super.service(req, resp);
+>          }
+>      }
+>      ```
+>
+>    
+>
+>  就是在注释的地方，调用这个方法的时候会在调用父类中的service方法，这就产生了多次响应的问题
+
+
+
+
+

@@ -1,0 +1,263 @@
+---
+title: 基于Hexo框架博客的搭建
+tags:
+  - hexo
+description: 不是吧兄弟，这年头谁还手写笔记啊
+keywords: 博客部署
+sticky: true
+top_img: /基于Hexo框架博客的搭建/preview.jpg
+cover: /基于Hexo框架博客的搭建/preview.jpg
+weight: 1
+style: |
+  #article-container img {
+    max-width: 70%;  /* 图片最大宽度为容器的70% */
+    height: auto;    /* 高度自动调整保持比例 */
+    display: block;  /* 块级显示 */
+    margin: 1rem auto;  /* 上下间距1rem，左右自动居中 */
+    border-radius: 8px;  /* 圆角 */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);  /* 轻微阴影 */
+  }
+abbrlink: 26488
+---
+
+<!-- more -->
+
+# 基于Hexo框架博客的搭建
+
+## 环境准备
+
+1. 确保电脑上有[Node.js](https://nodejs.org/zh-cn)和[Git](https://git-scm.com/book/zh/v2/起步-安装-Git)
+
+2. 在本地的用户文件夹下新建blog文件夹，之后有关博客的所有配置都在此文件夹中进行
+
+3. 安装VS Code 和Typora，便于编辑博客文章和改写博客的配置文件
+
+## 博客基本配置
+
+1. 用git bash打开blog文件夹，**一定要处在blog文件夹下**,之后所有的操作都是在此文件夹下操作
+
+2. 输入`npm install -g hexo-cli` 指令等待安装,如果下载速度太慢可以换源` npm config set registry https://registry.npmmirror.com`,安装成功后会在blog文件夹下看到各种文件，其中`_config.yml`就是hexo框架的配置文件
+
+3. 启动你的博客，`hexo s`启动后在本地4000端口访问就能看到最基本的博客框架
+
+   >1. 本地访问报错，可能是缺少某些插件
+   >
+   >  ```bash
+   >  npm install --save hexo-renderer-jade hexo-generator-feed hexo-generator-sitemap hexo-browsersync hexo-generator-archive
+   >  ```
+   >
+   >2. 运行`hexo c`会***清理***`public`文件夹下的内容，图片存储放在**`source`**文件夹下
+
+4. ### 跟换博客主题，本博客采用hexo Butterfly 主题
+
+   >1. 安装git插件`npm install --save hexo-deployer-git`
+   >
+   >2. 执行安装主题命令`git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly`
+   >
+   >3. 进入blog目录下的`_config.yml`文件，修改主题配置
+   >
+   >   ```yaml
+   >   theme:butterfly
+   >   ```
+   >
+   >4. 更改博客配置，参照[Butterfly 文檔(一) 快速開始 ](https://butterfly.js.org/posts/21cfbf15/),也可以在网上查看快速配置的教程，如果是小白建议直接看网上的教程
+   >
+   >5. 如果你已经将主题配置跟换为butterfly主题，那配置文件的修改应该是在`blog\themes\butterfly\_config.yml`中修改，建议复制一份到文件根目录下，避免因更新造成需要重新配置的问题（具体可参照官方文档）
+
+5. ### 搜索框配置,本站采用Algolia
+
+   >1. 安装[hexo-algolia](https://github.com/thom4parisot/hexo-algolia)或[hexo-algoliasearch ](https://github.com/LouisBarranqueiro/hexo-algoliasearch)
+   >
+   >2. 把主题配置文件中 search 的 use 配置为 `algolia_search`
+   >
+   >3. 登录[ Algolia](https://dashboard.algolia.com/users/sign_in?redirect_to=%2Fapps%2F8MD47LWWFK%2Fexplorer%2Fconfiguration%2Fhexo_blog_index%2Fsearchable-attributes)
+   >
+   >4. 创建一个应用程序，得到Api密钥,和索引
+   >
+   >5. 设置环境变量`HEXO_ALGOLIA_INDEXING_KEY`为你的管理员`adminApiKey`,这样才能执行更新索引操作，在命令行中设置了只能在当前会话有效，建议在你电脑的环境变量中配置
+   >
+   >  ```bash
+   >  export HEXO_ALGOLIA_ADMIN_API_KEY='这里为你的管理员密匙'
+   >  && HEXO_ALGOLIA_INDEXING_KEY=$HEXO_ALGOLIA_ADMIN_API_KEY hexo algolia
+   >  ```
+   >
+   >  6. 配置博客根目录下的`_config.yml`文件
+   >```yaml
+   >algolia:
+   >   applicationID: '......'
+   >   apiKey: '.............'
+   >   adminApiKey: '........'
+   >   indexName: '..........'
+   >```
+   >7. 执行下面命令上传博客内容供algolia生成索引
+   >
+   >```bash
+   >hexo clean && hexo generate && hexo algolia
+   >```
+   >
+   > 每次创建文章要执行该命令，可以更改`package.json`自动上传记录,命令行执行代码`npm run deploy或npm run d`
+   >
+   > ```json
+   >"deploy": "hexo deploy && hexo algolia",
+   > "d": "hexo deploy && hexo algolia"
+   > ```
+   >
+   >8. algolia中可以配置创建的应用程序搜索的方式和顺序
+   
+6. ### 评论系统
+
+   >1. 本站采用[Twikoo ](https://twikoo.js.org/)配置,采用[MongoDB Atlas ](https://www.mongodb.com/cloud/atlas/register)+[Netlify](https://app.netlify.com/)的云函数部署方式
+   >
+   >2. 注册`MongoDB Atlas`后创建一个数据库，选择免费的创建就好，地区选择`us-east-1`
+   >
+   >3. 创建数据库用户，设置网络访问IP地址`0.0.0.0/0`
+   >
+   >4. 复制数据库连接字符串,将<db_password>改为自己的密码，注意这是我的数据库连接字符串
+   >
+   >   ```
+   >   mongodb+srv://xxxxxxxx:<db_password>@cluster0.zgntw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+   >   ```
+   >
+   >5. 将[twikoojs/twikoo-netlify](https://github.com/twikoojs/twikoo-netlify)fork到自己的GitHub仓库中
+   >6. 注册`Netlify`并新建一个team,项目来源之前fork的项目，直接从你的GitHub仓库中读取就行
+   >7. 为你刚创建的项目添加环境变量，Key 输入 `MONGODB_URI`，value输入前面记录的数据库连接字符串
+   >8. 进入 Site overview，点击上方的链接，如果环境配置正确，可以看到 “Twikoo 云函数运行正常” 的提示
+   >
+   >  >如果出现报错，可能是你的环境变量设置的有问题，记得设置完环境变量后重新部署，`Netlify`相当于生成一个网站托管你的项目，如果你自己有域名的话可以将`Netlify`生成的域名换成你自己的域名，后期也可以将你的博客部署到`Netlify`上
+   >  >
+   >  >
+   > 
+   > 9. `https://xxx.netlify.app/.netlify/functions/twikoo`就是你的环境id,在主题的`_config.yml`配置文件中配置环境参数
+   > 
+   >  ```yml
+   >  twikoo:
+   >    envId: https://xxx.netlify.app/.netlify/functions/twikoo
+   >     # 和你数据库申请的地区一致
+   >     region: us-east-1
+   >     visitor: false
+   >     option:
+   >  ```
+   > 
+   > 
+   
+   7. ### 图片资源放置
+   
+	   >1. 开启`post_asset_folder: true`,每篇文章都会有自己的资源文件夹。让我们修改文章的图片引用方式：
+	   >
+	   > ```
+	   > source/_posts/
+	   > ├── 基于Hexo框架博客的搭建.md
+	   > └── 基于Hexo框架博客的搭建/
+	   >     ├── preview.jpg
+	   >     └── 其他图片...
+	   > ```
+	   >
+	   >2. 尝试了很多方法后发现有时候还是会找不到图片路径,我的解决方法：
+	   >
+	   >   >![图片路径](基于Hexo框架博客的搭建/图片路径.png)
+	   >   >
+	   >   >这样设置`Typora`后，当你复制图片到博文中时就会在同一级目录下创建相同名称的文件夹，里面放置的就是你的图片，但这样设置后你运行还是在网站上看不到图片，因为它public文件夹下中的那个文件夹没有图片资源，可以这么来看，当你用Hexo框架生成博客时，是将你的`Markdown`文章生成成静态网页，在你的`public`文件夹下又有着以你这篇博客标题名命名的文件夹，其中有生成的`index.html`的静态网页和你在博文中放置的所有图片资源，所以将你的图片拷贝去public文件下的那个同名文件就行了，引用`/目录/图片名`就可以了
+	   >
+	   >
+	
+	8. ## 其他
+	
+	   >1.魔改主题：[Hexo博客之butterfly主题优雅魔改系列](https://www.cnblogs.com/antmoe/p/12846393.html)
+	   >
+	   >2.Front-matter 
+	   >
+	   >- page Front-matter 用于配置你的博客文章
+	   >
+	   >- post Front-matter用于配置页面，如搜索标签，分类
+	   >
+	   >- `sticky: true`配置置顶标签
+	   >
+	   >- 首页文章简述，开启,设置为1，可定义概述
+	   >    ```yaml
+	   >    index_post_content:
+	   >      method: 1
+	   >      # If you set method to 2 or 3, the length need to config
+	   >      length: 500
+	   >    ```
+	   >
+	   > - 设置文章的权重值`weight`,在`Front-matter`中配置，值越小越靠前
+	   >
+	   >   ```yml
+	   >   # 默认文章排序方式
+	   >   default_generator:
+	   >     ignore_folder: ''
+	   >     order_by: 'weight' # 可以设置为 'title', 'date', 'updated' 等
+	   >       
+	   >   # 首页文章排序方式
+	   >   index_generator:
+	   >     path: ''
+	   >     per_page: 10
+	   >     order_by: 'weight' # 可以设置为 'title', 'date', 'updated' 等
+	   >     pagination_dir: 'page'
+	   >   ```
+	   >
+	   >3. 关闭侧边栏中的卡片
+	   >   ```yml
+	   >    card_tags:
+	   >     enable: false
+	   >   ```
+	   >
+	   >   4. 部署到`Netlify`上默认区域是`us-east-2`，而在`MongoDB`部署的是`us-east-1`,因为在主题配置评论配置中要指定地区,导致访问网站和本地之间的评论读取的不一样，也就是说网站访问的评论只能通过网站链接看到，本地和GitHub上评论的又只能在这两个评论中看到，两个评论不互通
+	   >        ```
+	   >        twikoo:
+	   >          envId: https://xxxxxx.netlify.app/.netlify/functions/twikoo
+	   >          region: us-east-1
+	   >          # Use Twikoo visitor count as the page view count
+	   >          visitor: false
+	   >          option:
+	   >        ```
+	   >
+	   >      
+	   
+	   
+
+## 部署到GitHub
+
+### 优点
+
+1. 白嫖
+2. 支持网站访问
+3. 记录版本迭代
+4. 相当于备份了一份自己的博客，本地数据丢失还能通过GitHub回溯
+5. 方便管理
+
+### 缺点
+
+1. 访问速度慢，不开加速器有时候访问不了
+2. 本地没问题的功能，访问GitHub会出问题
+3. 公共仓库安全性差
+
+### 部署方法
+
+1. 创建一个仓库，**xxx.github.io**前缀一定要和你的GitHub用户名一致
+
+2. 来到仓库主页复制SSH密钥
+
+3. 打开hexo根目录下的`_config.yml`填写`deploy`模块
+
+   ```yml
+   deploy:
+     type: git
+     repo: git@github.com:xxx/xxx.github.io.git
+     branch: main
+   ```
+
+4. 执行命令,一定要安装好git插件✅,如果开了加速器，一定要关闭在部署，不然会报错
+
+   ```bash
+    hexo c && hexo g && hexo d  # hexo d 表示执行部署
+   ```
+   
+   ## 部署到`Netlify`上
+   
+   1. 直接导入在GitHub创建的仓库
+   2. 设置自定义域名
+   3. 如果自己购买了域名可以更换上去
+   4. 支持自动构建，push了代码就会自动部署
+   
+   
