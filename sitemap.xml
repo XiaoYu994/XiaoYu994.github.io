@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xiaoyu994.github.io/%E5%9F%BA%E4%BA%8EHexo%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/</loc>
+    
+    <lastmod>2024-12-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xiaoyu994.github.io/SpringBoot/</loc>
     
     <lastmod>2024-12-19</lastmod>
@@ -111,15 +120,6 @@
   
   <url>
     <loc>https://xiaoyu994.github.io/Spring%E8%BF%9B%E9%98%B6%E4%B8%80/</loc>
-    
-    <lastmod>2024-12-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xiaoyu994.github.io/%E5%9F%BA%E4%BA%8EHexo%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/</loc>
     
     <lastmod>2024-12-19</lastmod>
     

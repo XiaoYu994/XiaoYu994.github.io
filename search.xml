@@ -1970,7 +1970,7 @@ aftercompletion:与配置顺序相反，可能不运行</p>
 <ol>
 <li>开启<code>post_asset_folder: true</code>,每篇文章都会有自己的资源文件夹。让我们修改文章的图片引用方式：</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;source/_posts/</span><br><span class="line">&gt;├── 基于Hexo框架博客的搭建.md</span><br><span class="line">&gt;└── 基于Hexo框架博客的搭建/</span><br><span class="line">├── preview.jpg</span><br><span class="line">└── 其他图片...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> &gt;source/_posts/</span><br><span class="line"> &gt;├── 基于Hexo框架博客的搭建.md</span><br><span class="line"> &gt;└── 基于Hexo框架博客的搭建/</span><br><span class="line">├── preview.jpg</span><br><span class="line">└── 其他图片...</span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li>尝试了很多方法后发现有时候还是会找不到图片路径,我的解决方法：</li>
 </ol>
@@ -1979,7 +1979,7 @@ aftercompletion:与配置顺序相反，可能不运行</p>
 <ol start="3">
 <li>使用的是<code>hexo-asset-image</code>插件需要改它js中的配置文件，在58行修改为，这个插件的作用就是将静态页面中引用图片的路径修改</li>
 </ol>
-  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="variable language_">this</span>).<span class="title function_">attr</span>(<span class="string">&#x27;src&#x27;</span>, src);</span><br></pre></td></tr></table></figure>
+ <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="variable language_">this</span>).<span class="title function_">attr</span>(<span class="string">&#x27;src&#x27;</span>, src);</span><br></pre></td></tr></table></figure>
 <ol start="4">
 <li>在markdown文件中插入图片使其显示到hexo框架的形式</li>
 </ol>
@@ -1989,6 +1989,7 @@ aftercompletion:与配置顺序相反，可能不运行</p>
 <img src="QQ_1734594408252.png" alt="QQ_1734594408252" style="zoom:%;">
 </li>
 <li><mark><strong>使用的方式不同图片使用的路径也不一样</strong></mark></li>
+<li>像封面这种图片，用png的格式，用jpg的话运行hexo c 指令会被清理掉</li>
 </ul>
 </blockquote>
 <ol start="7">
@@ -2009,7 +2010,7 @@ aftercompletion:与配置顺序相反，可能不运行</p>
 &gt;
 &gt; - 设置文章的权重值`weight`,在`Front-matter`中配置，值越小越靠前
 &gt;
-&gt;   <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认文章排序方式</span></span><br><span class="line"><span class="attr">default_generator:</span></span><br><span class="line">  <span class="attr">ignore_folder:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">&#x27;weight&#x27;</span> <span class="comment"># 可以设置为 &#x27;title&#x27;, &#x27;date&#x27;, &#x27;updated&#x27; 等</span></span><br><span class="line">                </span><br><span class="line"><span class="comment"># 首页文章排序方式</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">10</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">&#x27;weight&#x27;</span> <span class="comment"># 可以设置为 &#x27;title&#x27;, &#x27;date&#x27;, &#x27;updated&#x27; 等</span></span><br><span class="line">  <span class="attr">pagination_dir:</span> <span class="string">&#x27;page&#x27;</span></span><br></pre></td></tr></table></figure>
+&gt;   <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认文章排序方式</span></span><br><span class="line"><span class="attr">default_generator:</span></span><br><span class="line">  <span class="attr">ignore_folder:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">&#x27;weight&#x27;</span> <span class="comment"># 可以设置为 &#x27;title&#x27;, &#x27;date&#x27;, &#x27;updated&#x27; 等</span></span><br><span class="line">                  </span><br><span class="line"><span class="comment"># 首页文章排序方式</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">10</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">&#x27;weight&#x27;</span> <span class="comment"># 可以设置为 &#x27;title&#x27;, &#x27;date&#x27;, &#x27;updated&#x27; 等</span></span><br><span class="line">  <span class="attr">pagination_dir:</span> <span class="string">&#x27;page&#x27;</span></span><br></pre></td></tr></table></figure>
 &gt;
 &gt;3. 关闭侧边栏中的卡片
 &gt;   <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">card_tags:</span></span><br><span class="line"> <span class="attr">enable:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
