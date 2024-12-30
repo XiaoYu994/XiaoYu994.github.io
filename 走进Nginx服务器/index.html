@@ -195,7 +195,7 @@
 <blockquote>
 <p>原理：动静分离技术其实是采用代理的方式，在server{}段中加入带正则匹配的location来指定匹配项针对PHP的动静分离：静态页面交给Nginx处理，动态页面交给PHP-FPM模块或Apache处理。在Nginx的配置中，是通过location配置段配合正则匹配实现静态与动态页面的不同处理方式</p>
 <center>
-   <img src="QQ_1733847218709.png" alt="QQ_1733847218709" style="zoom: 33% ;">
+   <img src="/走进Nginx服务器/undefined"  alt="QQ_1733847218709" style="zoom: 33% ;" />
 </center>
 <p><strong>基本配置</strong></p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">       <span class="attribute">listen</span>       <span class="number">10000</span>;</span><br><span class="line">       <span class="attribute">server_name</span>  localhost;</span><br><span class="line">      </span><br><span class="line">      <span class="comment">#拦截后台请求</span></span><br><span class="line">      <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http:// <span class="number">192.168.112.101:8888</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">#拦截静态资源</span></span><br><span class="line">      <span class="comment">#使用正则表达式匹配</span></span><br><span class="line">      <span class="comment">#这些请求被定向到 /static/ 目录下。autoindex on; 指令允许 Nginx 自动为目录提供索引页面</span></span><br><span class="line">      <span class="section">location</span> <span class="regexp">~ .*\.(html|htm|gif|jpg|jpeg|bmp|png|ico|js|css)$</span> &#123;</span><br><span class="line">        <span class="attribute">root</span> /static/;</span><br><span class="line">        <span class="attribute">autoindex</span> <span class="literal">on</span>;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -203,7 +203,7 @@
 <h2 id="Nginx实现反向代理"><a class="header-anchor" href="#Nginx实现反向代理"></a>Nginx实现反向代理</h2>
 <h3 id="基本介绍"><a class="header-anchor" href="#基本介绍"></a>基本介绍</h3>
 <blockquote>
-<img src="走进Nginx服务器\QQ_1733842287284.png" alt="QQ_1733842287284" style="zoom:50%;">
+<img src="/走进Nginx服务器/undefined"  alt="QQ_1733842287284" style="zoom:50%;" />
 <ol>
 <li>正向代理：在本地搭建一个服务器来帮助我们去访问，像VPN 就是正向代理(浏览器中配置代理服务器)</li>
 <li>反向代理：搭建一个过渡服务器，反向代理服务器和目标服务器对外就是一个服务器，暴露的是代理服务器地址，隐藏了真实服务器的地址，是在网络中将客户端的请求转发给后端服务器的技术(在服务器中配置代理服务器)</li>

@@ -300,7 +300,7 @@
 <ol start="2">
 <li>尝试了很多方法后发现有时候还是会找不到图片路径,我的解决方法：</li>
 </ol>
-<p><img src="%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84.png" alt="图片路径"></p>
+<img src="/%E5%9F%BA%E4%BA%8EHexo%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84.png" class="" title="图片路径">
 <p>这样设置<code>Typora</code>后，当你复制图片到博文中时就会在同一级目录下创建相同名称的文件夹，里面放置的就是你的图片，但这样设置后你运行还是在网站上看不到图片，因为它public文件夹下中的那个文件夹没有图片资源，可以这么来看，当你用Hexo框架生成博客时，是将你的<code>Markdown</code>文章生成成静态网页，在你的<code>public</code>文件夹下又有着以你这篇博客标题名命名的文件夹，其中有生成的<code>index.html</code>的静态网页和你在博文中放置的所有图片资源，<s>所以将你的图片拷贝去public文件下的那个同名文件就行了，引用<code>/目录/图片名</code>就可以了</s></p>
 <ol start="3">
 <li>使用的是<code>hexo-asset-image</code>插件需要改它js中的配置文件，在58行修改为，这个插件的作用就是将静态页面中引用图片的路径修改</li>
@@ -310,9 +310,11 @@
 <li>在markdown文件中插入图片使其显示到hexo框架的形式</li>
 </ol>
 <ul>
-<li><img src="QQ_1734594375033.png" alt="QQ_1734594375033"></li>
 <li>
-<img src="QQ_1734594408252.png" alt="QQ_1734594408252" style="zoom:%;">
+<img src="/%E5%9F%BA%E4%BA%8EHexo%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/QQ_1734594375033.png" class="" title="QQ_1734594375033">
+</li>
+<li>
+<img src="/基于Hexo框架博客的搭建/QQ_1734594408252.png"  alt="QQ_1734594408252" style="zoom:%;" />
 </li>
 <li><mark><strong>使用的方式不同图片使用的路径也不一样</strong></mark></li>
 <li>像封面这种图片，用png的格式，用jpg的话运行hexo c 指令会被清理掉</li>

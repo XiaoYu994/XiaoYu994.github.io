@@ -185,8 +185,8 @@
 <p>在pom文件中自己导入servlet3.1的包可以用 request.getParameter获取文件传输的表单值，3.1以下不行</p>
 <p>文件名通常是<code>filename=&quot;filename.jpg&quot;</code>的形式，取出文件名时我们不需要“，所以<code>token.substring(token.indexOf(&quot;=&quot;) + 2, token.length()-1)</code>跳过”。</p>
 <p>从HTTP请求中获取上传文件的流<code>inputStream</code>,再通过输出流<code>new FileOutputStream(filePath)</code>将文件写入指定路径，创建缓冲区暂存读取的数据，最后将缓冲区中的数据写入文件</p>
-<p><code> getServletContext().getRealPath(&quot;/uploads&quot;);</code>这行代码的作用是获取Web应用中<code>/uploads</code>虚拟路径对应的实际文件系统路径，<code>getServletContext()</code>方法：这是<code>HttpServlet</code>类的一个方法，它返回一个<code>ServletContext</code>对象的引用，也就是返回web运行时的路径，后面就是指定的路径，如果没有该文件夹就创建<br>
-<img src="QQ_1733700975417.png" alt="文件路径"></p>
+<p><code> getServletContext().getRealPath(&quot;/uploads&quot;);</code>这行代码的作用是获取Web应用中<code>/uploads</code>虚拟路径对应的实际文件系统路径，<code>getServletContext()</code>方法：这是<code>HttpServlet</code>类的一个方法，它返回一个<code>ServletContext</code>对象的引用，也就是返回web运行时的路径，后面就是指定的路径，如果没有该文件夹就创建</p>
+<img src="/%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%8A%E4%BC%A0%E5%92%8C%E4%B8%8B%E8%BD%BD/QQ_1733700975417.png" class="" title="文件路径">
 </blockquote>
 <h3 id="需要的maven依赖"><a class="header-anchor" href="#需要的maven依赖"></a>需要的maven依赖</h3>
 <blockquote>
@@ -234,7 +234,7 @@
 <ol start="2">
 <li>常用方法</li>
 </ol>
-<p><img src="QQ_1733704827521.png" alt="常用方法"></p>
+ <img src="/%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%8A%E4%BC%A0%E5%92%8C%E4%B8%8B%E8%BD%BD/QQ_1733704827521.png" class="" title="常用方法">
 <ol start="3">
 <li>使用</li>
 </ol>
